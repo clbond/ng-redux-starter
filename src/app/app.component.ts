@@ -3,27 +3,13 @@ import { Component, Inject } from '@angular/core';
 import {
   DevToolsExtension,
   NgRedux,
-  select
 } from 'ng2-redux';
 
 import { NgReduxRouter } from 'ng2-redux-router';
 
-import {
-  combineEpics,
-  createEpicMiddleware,
-} from 'redux-observable';
-
-//import { EpicsToken, Epic } from '../epics';
-
-import {
-  AppState,
-  rootReducer,
-} from '../store';
-
-import {
-  enhancers,
-  middleware,
-} from '../store/configure';
+import { EpicToken } from '../epics';
+import { AppState } from '../store';
+import { configureStore } from '../store/configure';
 
 @Component({
   selector: 'app-root',
@@ -34,21 +20,14 @@ export class AppComponent {
     private devTools: DevToolsExtension,
     private ngRedux: NgRedux<AppState>,
     private ngReduxRouter: NgReduxRouter,
-//    @Inject(EpicsToken) private epics: Array<Epic>,
+    @Inject(EpicToken) private epics: Array<any>,
   ) {
-//    middleware.push(createEpicMiddleware(combineEpics(...epics)));
-
-    const tools = devTools.isEnabled() ? [devTools.enhancer()] : [];
-
-    ngRedux.configureStore(
-      rootReducer,
-      {},
-      middleware,
-      [
-        ...tools,
-        ...enhancers,
-      ]);
+    configureStore(devTools, ngRedux, epics);
 
     ngReduxRouter.initialize();
+  }
+
+  ngOnInit() {
+    this.ngRedux.dispatch({type: 'LOGIN'});
   }
 }

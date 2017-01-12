@@ -14,6 +14,8 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 
+import { SessionEpics, EpicToken } from '../epics';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +30,8 @@ import { AppComponent } from './app.component';
   ],
   providers: [
     DevToolsExtension,
+    SessionEpics,
+    {provide: EpicToken, useExisting: SessionEpics, multi: true},
   ],
   bootstrap: [AppComponent]
 })
