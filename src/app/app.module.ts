@@ -17,8 +17,11 @@ import { AppComponent } from './app.component';
 
 import { EpicsModule } from '../epics';
 
+import { AuthModule } from '../services';
+
 import {
-  LoginModule,
+  CounterModule,
+  ContainerModule,
 } from '../components';
 
 @NgModule({
@@ -31,8 +34,10 @@ import {
     NgReduxModule,
     NgReduxRouterModule,
     AppRoutingModule,
-    LoginModule,
+    AuthModule,
     EpicsModule,
+    CounterModule,
+    ContainerModule,
   ],
   providers: [
     DevToolsExtension,
