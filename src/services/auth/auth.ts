@@ -10,6 +10,8 @@ import Auth0Lock from 'auth0-lock';
 
 import {environment} from '../../environments/environment';
 
+const fuzziness = 750;
+
 @Injectable()
 export class AuthService {
   @Output() public authenticated = new EventEmitter<void>();
@@ -32,8 +34,10 @@ export class AuthService {
     this.authlock.show();
   }
 
-  public isAuthenticated() {
-    return tokenNotExpired();
+  public isAuthenticated(): Promise<boolean> {
+    return new Promise(resolve => {
+      setTimeout(() => resolve(tokenNotExpired()), fuzziness);
+    });
   }
 
   public logout() {

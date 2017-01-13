@@ -15,8 +15,6 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 
-import { EpicsModule } from '../epics';
-
 import { AuthModule } from '../services';
 
 import {
@@ -35,7 +33,6 @@ import {
     NgReduxRouterModule,
     AppRoutingModule,
     AuthModule,
-    EpicsModule,
     CounterModule,
     ContainerModule,
   ],

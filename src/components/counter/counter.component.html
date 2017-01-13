@@ -1,3 +1,15 @@
-<div>
-  Counter
-</div>
+<main>
+  <div class="action">
+    <a (click)="actions.decrement()">
+      <i class="material-icons">expand_more</i>
+    </a>
+  </div>
+  <div class="value">
+    Counter: {{counter$ | async}}
+  </div>
+  <div class="action">
+    <a (click)="actions.increment()">
+      <i class="material-icons">expand_less</i>
+    </a>
+  </div>
+</main>

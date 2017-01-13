@@ -9,7 +9,6 @@ import {
 
 import { NgReduxRouter } from 'ng2-redux-router';
 
-import { EpicToken } from '../epics';
 import { AuthService } from '../services';
 import { AppState } from '../store';
 import { configureStore } from '../store/configure';
@@ -24,19 +23,15 @@ export class AppComponent {
     private devTools: DevToolsExtension,
     private ngRedux: NgRedux<AppState>,
     private ngReduxRouter: NgReduxRouter,
-    //@Inject(EpicToken) private epics: Array<any>,
   ) {
-    configureStore(devTools, ngRedux, [] /* epics */);
+    configureStore(devTools, ngRedux, []);
 
     ngReduxRouter.initialize();
   }
 
-  ngOnInit() {
-    setTimeout(() => {
-      if (!this.auth.isAuthenticated()) {
-        this.auth.lock();
-      }
-    },
-    0);
+  async ngOnInit() {
+    if (!await this.auth.isAuthenticated()) {
+      this.auth.lock();
+    }
   }
 }
