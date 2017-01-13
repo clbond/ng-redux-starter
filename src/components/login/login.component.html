@@ -1,0 +1,31 @@
+<div class="container">
+  <form (ngSubmit)="login.emit(form.value)" #form="ngForm">
+    <div class="input input-login" [ngClass]="{filled: username}">
+      <input
+        class="input-container input-container-login"
+        type="text"
+        id="username"
+        name="username"
+        [(ngModel)]="username" />
+      <label class="input-label input-label-login" for="username">
+        <span class="input-label-content input-label-content-login">Username</span>
+      </label>
+    </div>
+    <div class="input input-login" [ngClass]="{filled: password}">
+      <input
+        class="input-container input-container-login"
+        type="password"
+        id="password"
+        name="password"
+        [(ngModel)]="password" />
+      <label class="input-label input-label-login" for="password">
+        <span class="input-label-content input-label-content-login">Password</span>
+      </label>
+    </div>
+    <div class="actions">
+      <button class="btn" type="submit" [disabled]="form.invalid">
+        Submit
+      </button>
+    </div>
+  </form>
+</div>

@@ -8,7 +8,9 @@ import {
   LOGIN_SUCCESS,
 } from './actions';
 
-const initialState: SessionState = {};
+const initialState: SessionState = {
+  authenticated: false,
+};
 
 export const sessionReducer =
     (state: SessionState = initialState, action: Action): SessionState => {

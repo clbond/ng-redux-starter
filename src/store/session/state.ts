@@ -1,1 +1,3 @@
-export interface SessionState {}
+export interface SessionState {
+  authenticated: boolean;
+}

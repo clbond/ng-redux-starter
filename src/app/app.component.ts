@@ -1,8 +1,11 @@
 import { Component, Inject } from '@angular/core';
 
+import { Observable } from 'rxjs';
+
 import {
   DevToolsExtension,
   NgRedux,
+  select,
 } from 'ng2-redux';
 
 import { NgReduxRouter } from 'ng2-redux-router';
@@ -16,6 +19,8 @@ import { configureStore } from '../store/configure';
   templateUrl: './app.component.html',
 })
 export class AppComponent {
+  @select(s => s.session.authenticated) public authenticated$: Observable<boolean>;
+
   constructor(
     private devTools: DevToolsExtension,
     private ngRedux: NgRedux<AppState>,
@@ -25,9 +30,5 @@ export class AppComponent {
     configureStore(devTools, ngRedux, epics);
 
     ngReduxRouter.initialize();
-  }
-
-  ngOnInit() {
-    this.ngRedux.dispatch({type: 'LOGIN'});
   }
 }

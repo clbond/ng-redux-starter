@@ -1,7 +1,8 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { BrowserModule } from '@angular/platform-browser';
+import { MaterialModule } from '@angular/material';
+
+import 'hammerjs';
 
 import {
   NgReduxModule,
@@ -14,7 +15,11 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 
-import { SessionEpics, EpicToken } from '../epics';
+import { EpicsModule } from '../epics';
+
+import {
+  LoginModule,
+} from '../components';
 
 @NgModule({
   declarations: [
@@ -22,16 +27,15 @@ import { SessionEpics, EpicToken } from '../epics';
   ],
   imports: [
     BrowserModule,
-    FormsModule,
-    HttpModule,
+    MaterialModule.forRoot(),
     NgReduxModule,
     NgReduxRouterModule,
     AppRoutingModule,
+    LoginModule,
+    EpicsModule,
   ],
   providers: [
     DevToolsExtension,
-    SessionEpics,
-    {provide: EpicToken, useExisting: SessionEpics, multi: true},
   ],
   bootstrap: [AppComponent]
 })
